@@ -36,7 +36,8 @@
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:24px}
+  #rec{scroll-margin-top:24px}
   body{
     background:var(--bg);color:var(--ink);font-family:var(--sans);
     line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
@@ -88,6 +89,23 @@
     background:linear-gradient(transparent 62%, var(--accent-soft) 62%);
     padding:0 2px;
   }
+
+  .pullquote{
+    display:block;margin-top:30px;max-width:56ch;
+    border-left:3px solid var(--accent);padding:2px 0 2px 20px;
+    color:var(--ink);transition:border-color .2s ease, transform .2s ease;
+  }
+  .pullquote:hover{transform:translateX(2px)}
+  .pullquote p{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(1.35rem,3.4vw,1.7rem);line-height:1.35;letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  .pullquote .src{
+    display:flex;align-items:center;gap:9px;margin-top:12px;
+    font-family:var(--mono);font-size:.78rem;color:var(--muted);
+  }
+  .initials.sm{width:24px;height:24px;font-size:.62rem}
 
   .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
   .btn{
@@ -178,11 +196,12 @@
     margin-top:26px;padding-top:20px;border-top:1px solid var(--line);
     display:flex;align-items:center;gap:14px;flex-wrap:wrap;
   }
-  .who .initials{
+  .initials{
     width:42px;height:42px;border-radius:50%;flex:none;
     display:grid;place-items:center;
     background:linear-gradient(140deg,var(--accent),color-mix(in srgb,var(--accent) 55%, #9b6cff));
     color:#fff;font-weight:600;font-size:.85rem;letter-spacing:.02em;
+    font-family:var(--sans);
   }
   .who .name{flex:1;min-width:180px}
   .who .name b{display:block;color:var(--ink);font-size:.95rem;font-weight:600;line-height:1.35}
@@ -275,6 +294,11 @@
     <h1>Gaurav<span class="last">Kumar</span></h1>
     <p class="role">Causal inference · LLM systems · Product experimentation</p>
     <p class="lede">Eight years turning ambiguous product and risk problems into models that ship, with roughly <span class="hl">$20M in quantified business impact</span> behind them. Most recently <strong>L5 Senior Data Scientist at Coinbase</strong>, owning data science across growth, compliance, customer experience, and platform.</p>
+    <a class="pullquote" href="#rec">
+      <p>&ldquo;I would hire him again in a heartbeat.&rdquo;</p>
+      <span class="src"><span class="initials sm">GD</span> Garrett Drayna, his manager at Coinbase</span>
+    </a>
+
     <nav class="cta">
       <a class="btn primary" href="Gaurav_Kumar_Resume.pdf">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -345,7 +369,7 @@
   </div>
 </section>
 
-<section class="rv">
+<section class="rv" id="rec">
   <div class="wrap">
     <div class="eyebrow">What my manager says</div>
     <blockquote class="quote">
