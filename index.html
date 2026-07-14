@@ -9,230 +9,484 @@
 <meta property="og:title" content="Gaurav Kumar · Senior Data Scientist">
 <meta property="og:description" content="8+ years driving $20M+ in quantified business impact through causal inference, LLM-powered analytics, and product experimentation.">
 <meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#fbfbfa; --panel:#fff; --ink:#16161a; --muted:#5f6470; --line:#e6e6e3;
-    --accent:#1652f0; --accent-soft:#eef2ff;
-    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    --bg:#fcfcfb; --panel:#ffffff; --panel-2:#f6f6f4;
+    --ink:#14151a; --ink-2:#3d4049; --muted:#71757f; --line:#e7e7e3;
+    --accent:#1652f0; --accent-ink:#1652f0; --accent-soft:#eef2ff;
+    --glow-1:rgba(22,82,240,.10); --glow-2:rgba(120,80,240,.08);
+    --shadow:0 1px 2px rgba(20,21,26,.04), 0 8px 24px -12px rgba(20,21,26,.12);
+    --shadow-lift:0 2px 4px rgba(20,21,26,.05), 0 18px 40px -16px rgba(20,21,26,.22);
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
   }
+  :root[data-theme="dark"], html:not([data-theme="light"]) {}
   @media (prefers-color-scheme:dark){
-    :root{ --bg:#0e0f12; --panel:#16181d; --ink:#f0f1f3; --muted:#9aa1ad; --line:#262931;
-           --accent:#6b93ff; --accent-soft:#1a2136; }
+    :root{
+      --bg:#0b0c0f; --panel:#14161b; --panel-2:#171a20;
+      --ink:#f2f3f5; --ink-2:#c8ccd4; --muted:#8b919d; --line:#242830;
+      --accent:#7aa2ff; --accent-ink:#9ab8ff; --accent-soft:#161d31;
+      --glow-1:rgba(90,130,255,.16); --glow-2:rgba(150,100,255,.10);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+      --shadow-lift:0 2px 4px rgba(0,0,0,.5), 0 20px 44px -16px rgba(0,0,0,.75);
+    }
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
-       -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;overflow-x:hidden;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:0 28px}
+  a{color:var(--accent-ink);text-decoration:none;transition:color .18s ease}
 
-  header{padding:88px 0 56px;border-bottom:1px solid var(--line)}
-  h1{font-size:2.6rem;line-height:1.15;letter-spacing:-.02em;font-weight:700}
-  .role{margin-top:10px;font-size:1.05rem;color:var(--muted)}
-  .lede{margin-top:24px;font-size:1.12rem;max-width:62ch}
-  .lede strong{font-weight:600}
-  .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
-  .meta a, .meta span{font-size:.86rem;font-family:var(--mono);
-       border:1px solid var(--line);background:var(--panel);
-       padding:7px 12px;border-radius:6px;color:var(--muted)}
-  .meta a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-  .meta a.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-  .meta a.primary:hover{opacity:.88}
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:112px 0 72px;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:-40% -20% auto -20%;height:620px;z-index:0;
+    background:
+      radial-gradient(60% 60% at 25% 30%, var(--glow-1) 0%, transparent 70%),
+      radial-gradient(50% 50% at 78% 20%, var(--glow-2) 0%, transparent 70%);
+    filter:blur(6px);pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:1}
 
-  section{padding:56px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:.78rem;font-family:var(--mono);text-transform:uppercase;
-     letter-spacing:.12em;color:var(--muted);font-weight:500;margin-bottom:28px}
+  .avail{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:.76rem;letter-spacing:.02em;
+    color:var(--ink-2);background:var(--panel);border:1px solid var(--line);
+    padding:6px 12px 6px 10px;border-radius:100px;box-shadow:var(--shadow);
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:#12b76a;position:relative;flex:none}
+  .dot::after{
+    content:"";position:absolute;inset:0;border-radius:50%;background:#12b76a;
+    animation:pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(2.6);opacity:0}100%{opacity:0}}
 
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}
-  .stat b{display:block;font-size:1.5rem;letter-spacing:-.02em}
-  .stat span{font-size:.85rem;color:var(--muted)}
+  h1{
+    margin-top:26px;font-size:clamp(2.6rem,7vw,4rem);line-height:1.02;
+    letter-spacing:-.035em;font-weight:700;
+  }
+  h1 .last{
+    display:block;font-family:var(--serif);font-weight:400;font-style:italic;
+    letter-spacing:-.02em;color:var(--ink-2);
+  }
+  .role{
+    margin-top:20px;font-family:var(--mono);font-size:.82rem;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--muted);
+  }
+  .lede{margin-top:22px;font-size:1.2rem;line-height:1.6;color:var(--ink-2);max-width:60ch}
+  .lede strong{color:var(--ink);font-weight:600}
+  .lede .hl{
+    color:var(--ink);font-weight:600;
+    background:linear-gradient(transparent 62%, var(--accent-soft) 62%);
+    padding:0 2px;
+  }
 
-  .proj{padding:22px 0;border-top:1px solid var(--line)}
-  .proj:first-of-type{border-top:none;padding-top:0}
-  .proj h3{font-size:1.05rem;font-weight:600;display:flex;justify-content:space-between;
-           align-items:baseline;gap:16px;flex-wrap:wrap}
-  .impact{font-family:var(--mono);font-size:.82rem;color:var(--accent);
-          background:var(--accent-soft);padding:3px 9px;border-radius:5px;white-space:nowrap}
-  .proj p{margin-top:8px;color:var(--muted);font-size:.97rem}
+  .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+  .btn{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:.9rem;font-weight:500;padding:10px 16px;border-radius:9px;
+    border:1px solid var(--line);background:var(--panel);color:var(--ink-2);
+    box-shadow:var(--shadow);transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);border-color:var(--accent);color:var(--accent-ink)}
+  .btn.primary{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+    box-shadow:0 2px 6px rgba(22,82,240,.24), 0 12px 28px -10px rgba(22,82,240,.5);
+  }
+  .btn.primary:hover{color:#fff;transform:translateY(-2px)}
+  .btn svg{width:15px;height:15px;flex:none}
 
-  .job{margin-bottom:34px}
-  .job:last-child{margin-bottom:0}
-  .job .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .job .co{font-size:1.08rem;font-weight:600}
-  .job .when{font-family:var(--mono);font-size:.82rem;color:var(--muted);white-space:nowrap}
-  .job .title{color:var(--muted);font-size:.95rem;margin-top:2px}
-  .job ul{margin-top:12px;padding-left:18px}
-  .job li{margin-bottom:7px;font-size:.97rem}
-  .job li::marker{color:var(--muted)}
+  /* ---------- sections ---------- */
+  section{padding:76px 0;border-top:1px solid var(--line)}
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;margin-bottom:34px;
+    font-family:var(--mono);font-size:.72rem;text-transform:uppercase;
+    letter-spacing:.16em;color:var(--muted);font-weight:500;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
 
-  .skills dt{font-family:var(--mono);font-size:.76rem;text-transform:uppercase;
-             letter-spacing:.08em;color:var(--muted);margin-top:18px}
-  .skills dt:first-child{margin-top:0}
-  .skills dd{margin-top:5px;font-size:.97rem}
+  /* ---------- stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:14px}
+  .stat{
+    position:relative;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:20px;overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .stat::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:linear-gradient(90deg,var(--accent),transparent);
+    opacity:0;transition:opacity .2s ease;
+  }
+  .stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--accent)}
+  .stat:hover::before{opacity:1}
+  .stat b{
+    display:block;font-size:1.85rem;letter-spacing:-.03em;font-weight:700;
+    line-height:1.1;margin-bottom:6px;
+  }
+  .stat span{font-size:.83rem;color:var(--muted);line-height:1.45;display:block}
 
-  blockquote{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
-             border-radius:8px;padding:24px 26px}
-  blockquote p{font-size:1rem;margin-bottom:14px}
-  blockquote p:last-of-type{margin-bottom:0}
-  .who{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
-       font-size:.88rem;color:var(--muted)}
-  .who b{display:block;color:var(--ink);font-size:.95rem;font-weight:600}
-  .who a{display:inline-block;margin-top:8px;font-size:.85rem;font-family:var(--mono)}
+  /* ---------- projects ---------- */
+  .proj{
+    position:relative;background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:24px 26px;margin-bottom:14px;
+    box-shadow:var(--shadow);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .proj:last-child{margin-bottom:0}
+  .proj:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--accent)}
+  .proj-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:14px;flex-wrap:wrap;margin-bottom:10px;
+  }
+  .proj h3{font-size:1.08rem;font-weight:600;letter-spacing:-.01em}
+  .impact{
+    font-family:var(--mono);font-size:.78rem;font-weight:500;white-space:nowrap;
+    color:var(--accent-ink);background:var(--accent-soft);
+    border:1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+    padding:4px 10px;border-radius:100px;
+  }
+  .proj p{color:var(--muted);font-size:.96rem;line-height:1.65}
 
-  footer{padding:48px 0 72px;color:var(--muted);font-size:.9rem}
-  footer .avail{color:var(--ink);font-weight:500;margin-bottom:6px}
+  /* ---------- quote ---------- */
+  .quote{
+    position:relative;background:var(--panel);border:1px solid var(--line);
+    border-radius:16px;padding:34px 34px 28px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  .quote::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--accent),transparent);
+  }
+  .quote .mark{
+    font-family:var(--serif);font-size:5rem;line-height:1;color:var(--accent);
+    opacity:.16;position:absolute;top:14px;right:26px;pointer-events:none;
+  }
+  .quote p{
+    font-size:1.03rem;line-height:1.72;color:var(--ink-2);margin-bottom:16px;
+    position:relative;z-index:1;
+  }
+  .quote p:last-of-type{margin-bottom:0}
+  .quote p strong{color:var(--ink);font-weight:600}
+  .who{
+    margin-top:26px;padding-top:20px;border-top:1px solid var(--line);
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .who .initials{
+    width:42px;height:42px;border-radius:50%;flex:none;
+    display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--accent),color-mix(in srgb,var(--accent) 55%, #9b6cff));
+    color:#fff;font-weight:600;font-size:.85rem;letter-spacing:.02em;
+  }
+  .who .name{flex:1;min-width:180px}
+  .who .name b{display:block;color:var(--ink);font-size:.95rem;font-weight:600;line-height:1.35}
+  .who .name span{font-size:.85rem;color:var(--muted)}
+  .who .verify{
+    font-family:var(--mono);font-size:.76rem;color:var(--muted);
+    border:1px solid var(--line);border-radius:8px;padding:7px 11px;
+    transition:border-color .18s ease,color .18s ease;
+  }
+  .who .verify:hover{border-color:var(--accent);color:var(--accent-ink)}
 
-  @media(max-width:600px){ header{padding:56px 0 40px} h1{font-size:2rem} .lede{font-size:1.02rem} }
+  /* ---------- timeline ---------- */
+  .tl{position:relative;padding-left:26px}
+  .tl::before{
+    content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;
+    background:linear-gradient(180deg,var(--accent),var(--line) 40%,var(--line));
+  }
+  .job{position:relative;padding-bottom:34px}
+  .job:last-child{padding-bottom:0}
+  .job::before{
+    content:"";position:absolute;left:-26px;top:8px;width:9px;height:9px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--accent);
+  }
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .job .co{font-size:1.1rem;font-weight:600;letter-spacing:-.01em}
+  .job .when{font-family:var(--mono);font-size:.78rem;color:var(--muted);white-space:nowrap}
+  .job .title{color:var(--muted);font-size:.92rem;margin-top:3px}
+  .job ul{margin-top:12px;padding-left:16px;list-style:none}
+  .job li{position:relative;margin-bottom:8px;font-size:.95rem;color:var(--ink-2);line-height:1.6}
+  .job li::before{
+    content:"";position:absolute;left:-16px;top:.62em;width:5px;height:1px;background:var(--muted);
+  }
+
+  /* ---------- skills ---------- */
+  .skillrow{margin-bottom:22px}
+  .skillrow:last-child{margin-bottom:0}
+  .skillrow dt{
+    font-family:var(--mono);font-size:.71rem;text-transform:uppercase;
+    letter-spacing:.12em;color:var(--muted);margin-bottom:9px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    font-size:.84rem;color:var(--ink-2);background:var(--panel-2);
+    border:1px solid var(--line);border-radius:7px;padding:5px 10px;
+    transition:border-color .18s ease,color .18s ease,transform .18s ease;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent-ink);transform:translateY(-1px)}
+
+  /* ---------- footer ---------- */
+  footer{position:relative;padding:76px 0 88px;border-top:1px solid var(--line);overflow:hidden}
+  footer::before{
+    content:"";position:absolute;inset:auto -20% -60% -20%;height:400px;z-index:0;
+    background:radial-gradient(50% 60% at 50% 100%, var(--glow-1) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  footer .wrap{position:relative;z-index:1}
+  footer h2{
+    font-size:1.7rem;letter-spacing:-.025em;font-weight:700;margin-bottom:10px;
+  }
+  footer h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--ink-2)}
+  footer .sub{color:var(--muted);font-size:1rem;max-width:52ch;margin-bottom:26px}
+  .colophon{
+    margin-top:44px;padding-top:22px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:.74rem;color:var(--muted);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .rv{opacity:1;transform:none}
+  }
+
+  @media(max-width:640px){
+    .hero{padding:76px 0 56px}
+    section{padding:56px 0}
+    .lede{font-size:1.06rem}
+    .quote{padding:26px 22px 22px}
+    .quote .mark{font-size:3.4rem;top:8px;right:16px}
+  }
 </style>
 </head>
 <body>
 
-<header>
+<div class="hero">
   <div class="wrap">
-    <h1>Gaurav Kumar</h1>
-    <p class="role">Senior Data Scientist. Causal inference, LLM systems, product experimentation.</p>
-    <p class="lede">Eight years turning ambiguous product and risk problems into models that ship, with roughly <strong>$20M in quantified business impact</strong> behind them. Most recently <strong>L5 Senior Data Scientist at Coinbase</strong>, owning data science across growth, compliance, customer experience, and platform.</p>
-    <nav class="meta">
-      <a class="primary" href="Gaurav_Kumar_Resume.pdf">Resume (PDF)</a>
-      <a href="https://linkedin.com/in/gauravk26">LinkedIn</a>
-      <a href="https://github.com/gauravk09">GitHub</a>
-      <a href="mailto:gauraviitk5@gmail.com">gauraviitk5@gmail.com</a>
-      <span>India</span>
+    <span class="avail"><span class="dot"></span>Open to Senior / Staff DS &amp; ML roles</span>
+    <h1>Gaurav<span class="last">Kumar</span></h1>
+    <p class="role">Causal inference · LLM systems · Product experimentation</p>
+    <p class="lede">Eight years turning ambiguous product and risk problems into models that ship, with roughly <span class="hl">$20M in quantified business impact</span> behind them. Most recently <strong>L5 Senior Data Scientist at Coinbase</strong>, owning data science across growth, compliance, customer experience, and platform.</p>
+    <nav class="cta">
+      <a class="btn primary" href="Gaurav_Kumar_Resume.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+      <a class="btn" href="https://linkedin.com/in/gauravk26">LinkedIn</a>
+      <a class="btn" href="https://github.com/gauravk09">GitHub</a>
+      <a class="btn" href="mailto:gauraviitk5@gmail.com">Email</a>
     </nav>
   </div>
-</header>
+</div>
 
-<section>
+<section class="rv">
   <div class="wrap">
-    <h2>By the numbers</h2>
+    <div class="eyebrow">By the numbers</div>
     <div class="stats">
       <div class="stat"><b>$20M+</b><span>Quantified impact shipped</span></div>
       <div class="stat"><b>8+ yrs</b><span>Applied ML in industry</span></div>
-      <div class="stat"><b>100K+</b><span>Support conversations / month through my LLM pipeline</span></div>
+      <div class="stat"><b>100K+</b><span>Conversations / month through my LLM pipeline</span></div>
       <div class="stat"><b>93%</b><span>Validated accuracy on that pipeline</span></div>
     </div>
   </div>
 </section>
 
-<section>
+<section class="rv">
   <div class="wrap">
-    <h2>Signature work</h2>
+    <div class="eyebrow">Signature work</div>
 
     <div class="proj">
-      <h3><span>Two-stage LLM support pipeline</span> <span class="impact">~$5.2M / yr</span></h3>
+      <div class="proj-head">
+        <h3>Two-stage LLM support pipeline</h3>
+        <span class="impact">~$5.2M / yr</span>
+      </div>
       <p>A cheap model summarizes, then a chain-of-thought call classifies team and theme. 100K+ conversations a month at 93% validated accuracy. Cut contact volume 20% and surfaced emerging issues to product teams before they showed up in dashboards. Monitored in three layers: daily LLM-as-judge scoring, weekly embedding clustering of low-confidence outputs, and biweekly human audits holding Cohen's Kappa above 0.70.</p>
     </div>
 
     <div class="proj">
-      <h3><span>Enhanced Due Diligence funnel rebuild</span> <span class="impact">~$8.6M / yr</span></h3>
+      <div class="proj-head">
+        <h3>Enhanced Due Diligence funnel rebuild</h3>
+        <span class="impact">~$8.6M / yr</span>
+      </div>
       <p>High-risk users were dropping out of EDD at the email step. Diagnosing that drop-off and moving the flow in-app took completion from 15% to 75% across 4K monthly users. A parallel read on the KYC Refresh funnel lifted completion from 35% to 50% across 500K monthly users, preventing ~$375K in restriction-driven revenue loss.</p>
     </div>
 
     <div class="proj">
-      <h3><span>Difference-in-differences model for CX quality</span> <span class="impact">~$720K / yr</span></h3>
+      <div class="proj-head">
+        <h3>Difference-in-differences model for CX quality</h3>
+        <span class="impact">~$720K / yr</span>
+      </div>
       <p>A clean causal read on what a quality support interaction is actually worth in revenue, which is what made the automation-versus-quality tradeoff arguable with numbers instead of instinct. CSAT up 5%.</p>
     </div>
 
     <div class="proj">
-      <h3><span>Asset-recommendation engagement drivers</span> <span class="impact">~$5M / yr</span></h3>
+      <div class="proj-head">
+        <h3>Asset-recommendation engagement drivers</h3>
+        <span class="impact">~$5M / yr</span>
+      </div>
       <p>CTR and segment analysis isolating what actually moves engagement: price momentum, new-user behavior, long-tail assets. Turned that read into incremental annualized revenue.</p>
     </div>
 
     <div class="proj">
-      <h3><span>Experiment Impact Tracker</span> <span class="impact">Internal platform</span></h3>
+      <div class="proj-head">
+        <h3>Experiment Impact Tracker</h3>
+        <span class="impact">Internal platform</span>
+      </div>
       <p>Every product team's experiment outcomes, translated into north-star metrics in one place. It gave execs visibility they didn't have and made experiment accountability a company-wide default rather than a per-team habit. Paired with an anomaly-detection tool across international markets that cut issue detection from weeks to days.</p>
     </div>
   </div>
 </section>
 
-<section>
+<section class="rv">
   <div class="wrap">
-    <h2>What my manager says</h2>
-    <blockquote>
-      <p>Gaurav is a top-tier data scientist and was consistently one of the strongest performers on our Platform Data Science team at Coinbase. His recent promotion to Senior Data Scientist (L5) is a direct reflection of his high technical bar and the significant impact he delivered during his tenure.</p>
+    <div class="eyebrow">What my manager says</div>
+    <blockquote class="quote">
+      <span class="mark">&rdquo;</span>
+      <p><strong>Gaurav is a top-tier data scientist</strong> and was consistently one of the strongest performers on our Platform Data Science team at Coinbase. His recent promotion to Senior Data Scientist (L5) is a direct reflection of his high technical bar and the significant impact he delivered during his tenure.</p>
       <p>Gaurav made broad contributions to some of Coinbase's most critical initiatives, particularly within regulatory and compliance efforts&mdash;areas that are essential to the company's mission. He possesses a rare blend of deep analytical rigor and the ability to communicate complex insights to cross-functional partners with ease. Beyond his technical skills, Gaurav is a stellar collaborator and a truly kind person who improves the culture of any team he's on.</p>
-      <p>He was a genuine pleasure to manage, and I would hire him again in a heartbeat. Any organization looking for a high-impact, strategic data leader would be lucky to have him.</p>
+      <p>He was a genuine pleasure to manage, and <strong>I would hire him again in a heartbeat.</strong> Any organization looking for a high-impact, strategic data leader would be lucky to have him.</p>
       <div class="who">
-        <b>Garrett Drayna</b>
-        Managed Gaurav directly at Coinbase. Now Frontier Risk at OpenAI.
-        <a href="https://www.linkedin.com/in/gauravk26/details/recommendations/">Read it on LinkedIn</a>
+        <span class="initials">GD</span>
+        <span class="name">
+          <b>Garrett Drayna</b>
+          <span>Managed Gaurav directly at Coinbase</span>
+        </span>
+        <a class="verify" href="https://www.linkedin.com/in/gauravk26/details/recommendations/">Read on LinkedIn</a>
       </div>
     </blockquote>
   </div>
 </section>
 
-<section>
+<section class="rv">
   <div class="wrap">
-    <h2>Experience</h2>
+    <div class="eyebrow">Experience</div>
+    <div class="tl">
 
-    <div class="job">
-      <div class="top">
-        <span class="co">Coinbase</span>
-        <span class="when">May 2022 – May 2026</span>
+      <div class="job">
+        <div class="job-head">
+          <span class="co">Coinbase</span>
+          <span class="when">May 2022 – May 2026</span>
+        </div>
+        <div class="title">Data Scientist → Senior Data Scientist (L5) · Remote, India</div>
+        <ul>
+          <li>Owned data science across three surfaces: AI and support automation, compliance and risk, and growth and product intelligence. Problem framing through deployment and monitoring.</li>
+          <li>Promoted to Senior DS two months before the May 2026 restructuring that ended the role.</li>
+          <li>Excellence Award (H2 2025) for ownership in reshaping high-risk compliance product strategy.</li>
+        </ul>
       </div>
-      <div class="title">Data Scientist → Senior Data Scientist (L5) · Remote, India</div>
-      <ul>
-        <li>Owned data science across three surfaces: AI and support automation, compliance and risk, and growth and product intelligence. Problem framing through deployment and monitoring.</li>
-        <li>Promoted to Senior DS two months before the May 2026 restructuring that ended the role.</li>
-        <li>Excellence Award (H2 2025) for ownership in reshaping high-risk compliance product strategy.</li>
-      </ul>
-    </div>
 
-    <div class="job">
-      <div class="top">
-        <span class="co">KPIT Technologies</span>
-        <span class="when">Jun 2018 – May 2022</span>
+      <div class="job">
+        <div class="job-head">
+          <span class="co">KPIT Technologies</span>
+          <span class="when">Jun 2018 – May 2022</span>
+        </div>
+        <div class="title">Data Scientist · India</div>
+        <ul>
+          <li>Built and deployed an ML pipeline for real-time remaining-useful-life prediction of spark plugs in production environments.</li>
+          <li>Fault-detection models for EV power systems, cutting downtime through proactive anomaly identification. Published at the FISITA World Automotive Congress, 2018: <a href="https://www.researchgate.net/publication/334573507_MACHINE_LEARNING_BASED_ELECTRIC_VEHICLE_POWER_SYSTEM_FAULT_DIAGNOSIS">Machine Learning Based Electric Vehicle Power System Fault Diagnosis</a>.</li>
+        </ul>
       </div>
-      <div class="title">Data Scientist · India</div>
-      <ul>
-        <li>Built and deployed an ML pipeline for real-time remaining-useful-life prediction of spark plugs in production environments.</li>
-        <li>Fault-detection models for EV power systems, cutting downtime through proactive anomaly identification. Published at the FISITA World Automotive Congress, 2018: <a href="https://www.researchgate.net/publication/334573507_MACHINE_LEARNING_BASED_ELECTRIC_VEHICLE_POWER_SYSTEM_FAULT_DIAGNOSIS">Machine Learning Based Electric Vehicle Power System Fault Diagnosis</a>.</li>
-      </ul>
-    </div>
 
-    <div class="job">
-      <div class="top">
-        <span class="co">IIT Kanpur</span>
-        <span class="when">2014 – 2018</span>
+      <div class="job">
+        <div class="job-head">
+          <span class="co">IIT Kanpur</span>
+          <span class="when">2014 – 2018</span>
+        </div>
+        <div class="title">B.Tech, Materials Science &amp; Engineering</div>
       </div>
-      <div class="title">B.Tech, Materials Science &amp; Engineering</div>
+
     </div>
   </div>
 </section>
 
-<section>
+<section class="rv">
   <div class="wrap">
-    <h2>Toolkit</h2>
-    <dl class="skills">
+    <div class="eyebrow">Toolkit</div>
+
+    <dl class="skillrow">
       <dt>Languages &amp; data</dt>
-      <dd>Python (NumPy, Pandas, Scikit-Learn, Statsmodels), SQL, PySpark</dd>
+      <dd class="chips">
+        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">PySpark</span>
+        <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Scikit-Learn</span>
+        <span class="chip">Statsmodels</span>
+      </dd>
+    </dl>
 
+    <dl class="skillrow">
       <dt>Machine learning</dt>
-      <dd>Supervised &amp; unsupervised learning, XGBoost, feature engineering, model evaluation &amp; calibration, survival analysis, anomaly detection, SHAP</dd>
+      <dd class="chips">
+        <span class="chip">XGBoost</span><span class="chip">Feature engineering</span>
+        <span class="chip">Model evaluation &amp; calibration</span><span class="chip">Survival analysis</span>
+        <span class="chip">Anomaly detection</span><span class="chip">SHAP</span>
+      </dd>
+    </dl>
 
+    <dl class="skillrow">
       <dt>Experimentation &amp; statistics</dt>
-      <dd>A/B testing, causal inference (difference-in-differences, propensity methods, IV/2SLS, meta-learners), hypothesis testing</dd>
+      <dd class="chips">
+        <span class="chip">A/B testing</span><span class="chip">Difference-in-differences</span>
+        <span class="chip">Propensity methods</span><span class="chip">IV / 2SLS</span>
+        <span class="chip">Meta-learners</span><span class="chip">Hypothesis testing</span>
+      </dd>
+    </dl>
 
+    <dl class="skillrow">
       <dt>Generative AI</dt>
-      <dd>Prompt engineering, RAG (Qdrant, Hugging Face), LLM evaluation (LLM-as-judge), text classification, agentic workflows</dd>
+      <dd class="chips">
+        <span class="chip">Prompt engineering</span><span class="chip">RAG (Qdrant, Hugging Face)</span>
+        <span class="chip">LLM-as-judge</span><span class="chip">Text classification</span>
+        <span class="chip">Agentic workflows</span>
+      </dd>
+    </dl>
 
+    <dl class="skillrow">
       <dt>Product analytics</dt>
-      <dd>Funnel analysis, cohort &amp; retention analysis, conversion optimization, drift monitoring (PSI, KS)</dd>
+      <dd class="chips">
+        <span class="chip">Funnel analysis</span><span class="chip">Cohort &amp; retention</span>
+        <span class="chip">Conversion optimization</span><span class="chip">Drift monitoring (PSI, KS)</span>
+      </dd>
+    </dl>
 
+    <dl class="skillrow">
       <dt>Visualization &amp; BI</dt>
-      <dd>Looker, Tableau, Superset, Hex, Streamlit</dd>
+      <dd class="chips">
+        <span class="chip">Looker</span><span class="chip">Tableau</span><span class="chip">Superset</span>
+        <span class="chip">Hex</span><span class="chip">Streamlit</span>
+      </dd>
     </dl>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p class="avail">Open to Senior / Staff Data Scientist, ML Engineer, and Applied Scientist roles. Remote, or anywhere in India.</p>
-    <p>Reach me at <a href="mailto:gauraviitk5@gmail.com">gauraviitk5@gmail.com</a> or on <a href="https://linkedin.com/in/gauravk26">LinkedIn</a>.</p>
+    <h2>Let's <em>talk</em>.</h2>
+    <p class="sub">Open to Senior / Staff Data Scientist, ML Engineer, and Applied Scientist roles. Remote, or anywhere in India.</p>
+    <nav class="cta">
+      <a class="btn primary" href="mailto:gauraviitk5@gmail.com">gauraviitk5@gmail.com</a>
+      <a class="btn" href="https://linkedin.com/in/gauravk26">LinkedIn</a>
+      <a class="btn" href="Gaurav_Kumar_Resume.pdf">Resume</a>
+    </nav>
+    <div class="colophon">
+      <span>Gaurav Kumar</span>
+      <span>India</span>
+    </div>
   </div>
 </footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
 
 </body>
 </html>
